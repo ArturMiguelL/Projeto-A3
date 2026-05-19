@@ -54,13 +54,12 @@ public class Main {
     static void adicionarLivro() {
         try {
             String nome = JOptionPane.showInputDialog("Nome do livro:");
-            if (nome == null) return;
-            int codigo = Integer.parseInt(JOptionPane.showInputDialog("Código:"));
+            if (nome == null) return;         
             String genero = JOptionPane.showInputDialog("Gênero:");
             String descricao = JOptionPane.showInputDialog("Descrição:");
             int paginas = Integer.parseInt(JOptionPane.showInputDialog("Número de páginas:"));
 
-            Livro livro = new Livro(nome, codigo, genero, "Disponivel", descricao, paginas);
+            Livro livro = new Livro(nome,genero, "Disponivel", descricao, paginas);
             biblioteca.inserir(livro);
             JOptionPane.showMessageDialog(null, "Livro inserido! ID: " + livro.getId());
         } catch (NumberFormatException e) {
@@ -71,14 +70,13 @@ public class Main {
     static void adicionarRevista() {
         try {
             String nome = JOptionPane.showInputDialog("Nome da revista:");
-            if (nome == null) return;
-            int codigo = Integer.parseInt(JOptionPane.showInputDialog("Código:"));
+            if (nome == null) return;           
             String genero = JOptionPane.showInputDialog("Gênero:");
             String editora = JOptionPane.showInputDialog("Editora:");
             String descricao = JOptionPane.showInputDialog("Descrição:");
             int edicao = Integer.parseInt(JOptionPane.showInputDialog("Número da edição:"));
 
-            Revista revista = new Revista(nome, codigo, genero, "Disponivel", descricao, edicao, editora);
+            Revista revista = new Revista(nome, genero, "Disponivel", descricao, edicao, editora);
             biblioteca.inserir(revista);
             JOptionPane.showMessageDialog(null, "Revista inserida! ID: " + revista.getId());
         } catch (NumberFormatException e) {
@@ -101,8 +99,7 @@ public class Main {
             } else {
                 String info = "ID: " + resultado.getId() + "\n"
                     + "Nome: " + resultado.getNome() + "\n"
-                    + "Gênero: " + resultado.getGenero() + "\n"
-                    + "Código: " + resultado.getCodigo() + "\n"
+                    + "Gênero: " + resultado.getGenero() + "\n"                  
                     + "Descrição: " + resultado.getDescricao() + "\n"
                     + "Status: " + resultado.getStatus();
                 JOptionPane.showMessageDialog(null, info, "Resultado", JOptionPane.INFORMATION_MESSAGE);

@@ -11,8 +11,8 @@ public class Livro extends Item implements Emprestavel {
         super();
     }
 
-    public Livro(String nome, int codigo, String genero, String status, String descricao, int numeroDePaginas) {
-        super(nome, codigo, genero, status, descricao);
+    public Livro(String nome,  String genero, String status, String descricao, int numeroDePaginas) {
+        super(nome, genero, status, descricao);
         this.numeroDePaginas = numeroDePaginas;
     }
 
@@ -46,8 +46,7 @@ public void devolver() {
     @Override
     public void exibirDetalhes() {
         System.out.println("ID: " + getId());
-        System.out.println("Nome: " + getNome());
-        System.out.println("Código: " + getCodigo());
+        System.out.println("Nome: " + getNome());       
         System.out.println("Gênero: " + getGenero());
         System.out.println("Descrição: " + getDescricao());
         System.out.println("Páginas: " + numeroDePaginas);

@@ -5,8 +5,7 @@ public abstract class Item {
 
     private int id;
     private String nome;
-    private String genero;
-    private int codigo;
+    private String genero;   
     private String status;
     private String descricao;
 
@@ -14,10 +13,9 @@ public abstract class Item {
         this.id = ++contadorId;
     }
 
-    public Item(String nome, int codigo, String genero, String status, String descricao) {
+    public Item(String nome,  String genero, String status, String descricao) {
         this.id = ++contadorId;
-        this.nome = nome;
-        this.codigo = codigo;
+        this.nome = nome;      
         this.genero = genero;
         this.status = status;
         this.descricao = descricao;
@@ -62,14 +60,7 @@ public abstract class Item {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+    
 
     public String getStatus() {
         return status;

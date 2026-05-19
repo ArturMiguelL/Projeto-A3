@@ -10,10 +10,6 @@ public class CadastroLivro {
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
 
-        System.out.print("Código: ");
-        int codigo = scanner.nextInt();
-        scanner.nextLine();
-
         System.out.print("Gênero: ");
         String genero = scanner.nextLine();
 
@@ -24,6 +20,6 @@ public class CadastroLivro {
         int paginas = scanner.nextInt();
         scanner.nextLine();
 
-        return new Livro(nome, codigo, genero, "Disponivel", descricao, paginas);
+        return new Livro(nome, genero, "Disponivel", descricao, paginas);
     }
 }
