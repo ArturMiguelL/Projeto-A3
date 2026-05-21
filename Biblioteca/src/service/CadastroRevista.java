@@ -9,7 +9,8 @@ public class CadastroRevista {
     public Revista coletarDados() {
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
-       
+
+
         System.out.print("Gênero: ");
         String genero = scanner.nextLine();
 

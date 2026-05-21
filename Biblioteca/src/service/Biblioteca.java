@@ -74,34 +74,37 @@ public class Biblioteca implements OperacoesItem {
     }
 
 
-    public void realizarEmprestimo(int itemId, int cpfUsuario) {
-        Item itemBusca = new model.Livro(itemId); // construtor só com id
-        Item item = repositorio.pesquisar(itemBusca);
-        Usuario usuario = buscarUsuario(cpfUsuario);
+    public boolean realizarEmprestimo(int itemId, int cpfUsuario) {
+    Item itemBusca = new model.Livro(itemId);
+    Item item = repositorio.pesquisar(itemBusca);
+    Usuario usuario = buscarUsuario(cpfUsuario);
 
-        if (item == null) { System.out.println("Item não encontrado."); return; }
-        if (usuario == null) { System.out.println("Usuário não encontrado."); return; }
-        if (!(item instanceof Emprestavel)) { System.out.println("Este item não pode ser emprestado."); return; }
+    if (item == null) { return false; }
+    if (usuario == null) { return false; }
+    if (!(item instanceof Emprestavel)) { return false; }
 
-        Emprestavel emprestavel = (Emprestavel) item;
-        if (!emprestavel.estaDisponivel()) { System.out.println("Item indisponível."); return; }
+    Emprestavel emprestavel = (Emprestavel) item;
+    if (!emprestavel.estaDisponivel()) { return false; }
 
-        emprestavel.emprestar(usuario);
-        usuario.adicionarEmprestimo(item);
-        System.out.println("Empréstimo realizado: " + item.getNome() + " -> " + usuario.getNome());
-    }
+    emprestavel.emprestar(usuario);
+    usuario.adicionarEmprestimo(item);
+    return true;
+}
 
+public boolean realizarDevolucao(int itemId, int cpfUsuario) {
+    Item itemBusca = new model.Livro(itemId);
+    Item item = repositorio.pesquisar(itemBusca);
+    Usuario usuario = buscarUsuario(cpfUsuario);
 
-    public void realizarDevolucao(int itemId, int cpfUsuario) {
-        Item itemBusca = new model.Livro(itemId);
-        Item item = repositorio.pesquisar(itemBusca);
-        Usuario usuario = buscarUsuario(cpfUsuario);
+    if (item == null || usuario == null) { return false; }
+    if (!(item instanceof Emprestavel)) { return false; }
 
-        if (item == null || usuario == null) { System.out.println("Item ou usuário não encontrado."); return; }
-        if (!(item instanceof Emprestavel)) { System.out.println("Este item não suporta devolução."); return; }
+    ((Emprestavel) item).devolver();
+    usuario.removerEmprestimo(item);
+    return true;
+}
 
-        ((Emprestavel) item).devolver();
-        usuario.removerEmprestimo(item);
-        System.out.println("Devolução registrada: " + item.getNome());
-    }
+    public Repositorio getRepositorio() {
+    return repositorio;
+}
 }

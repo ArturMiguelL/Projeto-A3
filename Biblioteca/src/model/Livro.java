@@ -11,7 +11,7 @@ public class Livro extends Item implements Emprestavel {
         super();
     }
 
-    public Livro(String nome,  String genero, String status, String descricao, int numeroDePaginas) {
+    public Livro(String nome, String genero, String status, String descricao, int numeroDePaginas) {
         super(nome, genero, status, descricao);
         this.numeroDePaginas = numeroDePaginas;
     }
@@ -21,22 +21,22 @@ public class Livro extends Item implements Emprestavel {
     }
 
     @Override
-public void emprestar(Usuario usuario) {
-    if (!disponivel) {
-        System.out.println("Livro já está emprestado.");
-        return;
+    public void emprestar(Usuario usuario) {
+        if (!disponivel) {
+            System.out.println("Livro já está emprestado.");
+            return;
+        }
+        this.usuarioAtual = usuario;
+        this.disponivel = false;
+        setStatus("Emprestado");
     }
-    this.usuarioAtual = usuario;
-    this.disponivel = false;
-    setStatus("Emprestado"); 
-}
 
-   @Override
-public void devolver() {
-    this.usuarioAtual = null;
-    this.disponivel = true;
-    setStatus("Disponivel"); 
-}
+    @Override
+    public void devolver() {
+        this.usuarioAtual = null;
+        this.disponivel = true;
+        setStatus("Disponivel");
+    }
 
     @Override
     public boolean estaDisponivel() {
@@ -46,7 +46,7 @@ public void devolver() {
     @Override
     public void exibirDetalhes() {
         System.out.println("ID: " + getId());
-        System.out.println("Nome: " + getNome());       
+        System.out.println("Nome: " + getNome());
         System.out.println("Gênero: " + getGenero());
         System.out.println("Descrição: " + getDescricao());
         System.out.println("Páginas: " + numeroDePaginas);
