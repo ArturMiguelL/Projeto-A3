@@ -1,23 +1,42 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Usuario {
     private String nome;
-    private int cpf;
-    private ArrayList<Item> itensEmprestados = new ArrayList<>();
+    private String cpf;
+    private Item[] itensEmprestados;
+    private int qtdEmprestados;
 
     public Usuario(String nome, int cpf) {
-        this.nome = nome;
+     this.nome = nome;
         this.cpf = cpf;
+        this.itensEmprestados = new Item[4];
+        this.qtdEmprestados = 0;
     }
 
     public void adicionarEmprestimo(Item item){
-        itensEmprestados.add(item);
+        if (qtdEmprestados == itensEmprestados.length) {
+            int novoTamanho = itensEmprestados.length * 1.5;
+            Item[] novoArray = new Item[novoTamanho];
+            for (int i = 0; i < qtdEmprestados; i++) {
+                novoArray[i] = itensEmprestados[i];
+            }
+            itensEmprestados = novoArray;
+        }
+        itensEmprestados[qtdEmprestados] = item;
+        qtdEmprestados++;
     }
 
      public void removerEmprestimo(Item item){
-        itensEmprestados.remove(item);
+        for (int i = 0; i < qtdEmprestados; i++) {
+            if (itensEmprestados[i] == item) {
+                for (int j = i; j < qtdEmprestados - 1; j++) {
+                    itensEmprestados[j] = itensEmprestados[j + 1];
+                }
+                itensEmprestados[qtdEmprestados - 1] = null;
+                qtdEmprestados--;
+                return;
+            }
+        }
     }
 
     public void exibirEmprestimos() {
@@ -25,8 +44,8 @@ public class Usuario {
             System.out.println("Nenhum item emprestado.");
             return;
         }
-        for (Item item : itensEmprestados) {
-            System.out.println(" - " + item.getNome());
+         for (int i = 0; i < qtdEmprestados; i++) {
+            System.out.println(" - " + itensEmprestados[i].getNome());
         }
     }
 
