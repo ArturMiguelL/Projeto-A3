@@ -6,7 +6,7 @@ public class Usuario {
     private Item[] itensEmprestados;
     private int qtdEmprestados;
 
-    public Usuario(String nome, int cpf) {
+    public Usuario(String nome, String cpf) {
      this.nome = nome;
         this.cpf = cpf;
         this.itensEmprestados = new Item[4];
@@ -15,7 +15,7 @@ public class Usuario {
 
     public void adicionarEmprestimo(Item item){
         if (qtdEmprestados == itensEmprestados.length) {
-            int novoTamanho = itensEmprestados.length * 1.5;
+            int novoTamanho = (int) (itensEmprestados.length * 1.5);
             Item[] novoArray = new Item[novoTamanho];
             for (int i = 0; i < qtdEmprestados; i++) {
                 novoArray[i] = itensEmprestados[i];
@@ -40,7 +40,7 @@ public class Usuario {
     }
 
     public void exibirEmprestimos() {
-        if (itensEmprestados.isEmpty()) {
+        if (qtdEmprestados == 0) {
             System.out.println("Nenhum item emprestado.");
             return;
         }
@@ -52,7 +52,7 @@ public class Usuario {
     public String getNome() {
         return nome;
     }
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 

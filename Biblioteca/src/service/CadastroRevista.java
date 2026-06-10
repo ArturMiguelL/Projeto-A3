@@ -24,6 +24,6 @@ public class CadastroRevista {
         int edicao = scanner.nextInt();
         scanner.nextLine();
 
-        return new Revista(nome, genero, "Disponivel", descricao, edicao, editora);
+        return new Revista(nome, genero, "Somente no local", descricao, edicao, editora);
     }
 }

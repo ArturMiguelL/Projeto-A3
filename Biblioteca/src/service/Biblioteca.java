@@ -66,12 +66,12 @@ public class Biblioteca implements OperacoesItem {
         System.out.println("Usuário cadastrado com sucesso.");
     }
 
-    public Usuario buscarUsuario(int cpf) {
-        for (int i = 0; i < qtdUsuarios; i++) {
-            if (usuarios[i].getCpf() == cpf) return usuarios[i];
-        }
-        return null;
+   public Usuario buscarUsuario(String cpf) {
+    for (int i = 0; i < qtdUsuarios; i++) {
+        if (usuarios[i].getCpf().equals(cpf)) return usuarios[i];
     }
+    return null;
+}
 
      public Usuario[] getUsuarios() {
         Usuario[] copia = new Usuario[qtdUsuarios];

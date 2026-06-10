@@ -12,7 +12,7 @@ public class Main {
         while (true) {
             int escolha = mostrarMenu();
 
-            if (escolha == -1 || escolha == 9) {
+            if (escolha == -1 || escolha == 10) {
                 JOptionPane.showMessageDialog(null, "Encerrando...");
                 break;
             }
@@ -81,7 +81,6 @@ public class Main {
         if (selecionado.startsWith("8."))  return 7;
         if (selecionado.startsWith("9."))  return 8;
         if (selecionado.startsWith("10.")) return 9;
-        if (selecionado.startsWith("0."))  return 9; 
         return -1;
     }
 
@@ -168,7 +167,7 @@ public class Main {
         Integer edicao = lerInteiro("Adicionar Revista", "Número da edição:");
         if (edicao == null) return;
  
-        Revista revista = new Revista(nome, genero, "Disponível", descricao, edicao, editora);
+        Revista revista = new Revista(nome, genero, "Somente no local", descricao, edicao, editora);
         biblioteca.inserir(revista);
         JOptionPane.showMessageDialog(null,
             "Revista inserida com sucesso!\nID atribuído: " + revista.getId(),
